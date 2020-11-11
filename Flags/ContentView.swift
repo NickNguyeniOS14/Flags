@@ -15,8 +15,16 @@ struct ContentView: View {
   var body: some View {
     List {
       ForEach(0..<self.flags.count) { index in
-        Text(flags[index]).font(.custom("Arial", size: 100))
+        HStack {
+          Text(flags[index]).font(.custom("Arial", size: 100))
+          Text("Flag \(index)")
+        }.onTapGesture {
+          self.showModal.toggle()
+        }
       }
+
+    }.sheet(isPresented: self.$showModal) {
+      Text("Flag Selected")
     }
   }
 }
