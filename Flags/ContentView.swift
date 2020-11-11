@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 
   @State private var showModal: Bool = false
+  @State private var selectedFlag: String = ""
   let flags = ["🇺🇸","🏳️‍🌈","🇨🇳","🇬🇧","🇲🇲","🇨🇦","🇰🇷"]
 
   var body: some View {
@@ -20,11 +21,12 @@ struct ContentView: View {
           Text("Flag \(index)")
         }.onTapGesture {
           self.showModal.toggle()
+          self.selectedFlag = self.flags[index]
         }
       }
 
     }.sheet(isPresented: self.$showModal) {
-      Text("Flag Selected")
+      Text(self.selectedFlag).font(.custom("Arial", size: 200))
     }
   }
 }
